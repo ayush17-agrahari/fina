@@ -1,0 +1,128 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class OnlineQuizApp extends JFrame {
+    private JLabel imageLabel;
+    private JLabel questionLabel;
+    private JRadioButton option1;
+    private JRadioButton option2;
+    private JRadioButton option3;
+    private JRadioButton option4;
+    private JButton submitButton;
+    private ButtonGroup optionsGroup;
+    private JButton startButton;
+
+    public OnlineQuizApp() {
+        // Set up the window
+        setTitle("Online Quiz");
+        setSize(500, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        // Create and add the Terms and Conditions button
+        startButton = new JButton("Start Quiz");
+        add(startButton, BorderLayout.SOUTH);
+
+        // Handle start quiz button click event
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showTermsAndConditions();
+            }
+        });
+    }
+
+    // Method to show Terms and Conditions dialog
+    private void showTermsAndConditions() {
+        JTextArea termsText = new JTextArea();
+        termsText.setText("By using this application, you agree to the following terms and conditions:\n\n" +
+                "1. You will not cheat during the quiz.\n" +
+                "2. You will answer all questions honestly.\n" +
+                "3. The quiz results will be stored for feedback purposes.\n\n" +
+                "Please review the above terms before proceeding.");
+        termsText.setWrapStyleWord(true);
+        termsText.setLineWrap(true);
+        termsText.setCaretPosition(0);
+        termsText.setEditable(false);
+
+        // Show a dialog with the Terms and Conditions
+        int option = JOptionPane.showConfirmDialog(this, new JScrollPane(termsText), "Terms and Conditions", JOptionPane.OK_CANCEL_OPTION);
+
+        if (option == JOptionPane.OK_OPTION) {
+            // If the user accepts the terms, start the quiz
+            startQuiz();
+        } else {
+            // If the user declines, exit the program
+            JOptionPane.showMessageDialog(this, "You must accept the terms and conditions to continue.", "Warning", JOptionPane.WARNING_MESSAGE);
+            System.exit(0);
+        }
+    }
+
+    // Method to start the quiz after terms are accepted
+    private void startQuiz() {
+        // Reset the window to show quiz content
+        getContentPane().removeAll();
+        setLayout(new BorderLayout());
+
+        // Add the student image
+        ImageIcon studentImage = new ImageIcon("student.jpg"); // Make sure to add the image in the correct path
+        imageLabel = new JLabel(studentImage);
+        add(imageLabel, BorderLayout.NORTH);
+
+        // Add the quiz content
+        JPanel quizPanel = new JPanel();
+        quizPanel.setLayout(new BoxLayout(quizPanel, BoxLayout.Y_AXIS));
+
+        questionLabel = new JLabel("What is the capital of France?");
+        quizPanel.add(questionLabel);
+
+        option1 = new JRadioButton("Berlin");
+        option2 = new JRadioButton("Paris");
+        option3 = new JRadioButton("Rome");
+        option4 = new JRadioButton("Madrid");
+
+        optionsGroup = new ButtonGroup();
+        optionsGroup.add(option1);
+        optionsGroup.add(option2);
+        optionsGroup.add(option3);
+        optionsGroup.add(option4);
+
+        quizPanel.add(option1);
+        quizPanel.add(option2);
+        quizPanel.add(option3);
+        quizPanel.add(option4);
+
+        submitButton = new JButton("Submit");
+        quizPanel.add(submitButton);
+
+        add(quizPanel, BorderLayout.CENTER);
+
+        // Handle button click event
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (option2.isSelected()) {
+                    JOptionPane.showMessageDialog(null, "Correct! Paris is the capital of France.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Incorrect! Try again.");
+                }
+            }
+        });
+
+        // Refresh the window to display the quiz content
+        revalidate();
+        repaint();
+    }
+
+    public static void main(String[] args) {
+        // Create and display the application window
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new OnlineQuizApp().setVisible(true);
+            }
+        });
+    }
+}

@@ -1,0 +1,161 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+/* Container for the Quiz */
+.quiz-container {
+    background-color: #fff;
+    width: 80%;
+    max-width: 700px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #4CAF50;
+    text-align: center;
+}
+
+/* Question Text */
+.question-text {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Option Buttons */
+.option-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.option-container label {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.option-container label:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+}
+
+.option-container input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Buttons for Navigation */
+button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+button:disabled {
+    background-color: #dcdcdc;
+    cursor: not-allowed;
+}
+
+/* Score Display */
+.score-container {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.score-container .score-text {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Footer with Restart / Exit buttons */
+footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+footer button {
+    margin: 0 10px;
+}
+
+/* Modal for Finished Quiz */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    width: 50%;
+}
+
+.modal button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin-top: 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.modal button:hover {
+    background-color: #45a049;
+}
+
+.modal button:focus {
+    outline: none;
+}
+
+
+/*The body is styled to center the quiz container and make it responsive.
+The quiz container is given a white background with a slight shadow for a clean and modern look.
+The question text is displayed in a large font with spacing.
+Options are styled with labels and radio buttons, and when hovered, the background changes slightly to enhance interactivity.
+Buttons have a green color, and they change color slightly on hover, providing visual feedback for users.*/

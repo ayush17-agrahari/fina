@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Quiz</title>
+    <script>
+        // Client-side validation for quiz form submission
+        function validateForm() {
+            const questionAnswer = document.getElementById("answer").value;
+
+            if (questionAnswer === "") {
+                alert("Please select an answer.");
+                return false;
+            }
+
+            if (questionAnswer < 1 || questionAnswer > 4) {
+                alert("Please select a valid option between 1 and 4.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h2>Online Quiz</h2>
+    <form id="quizForm" onsubmit="return validateForm()">
+        <label for="question">What is the capital of France?</label><br>
+        <input type="radio" id="answer" name="answer" value="1"> Berlin<br>
+        <input type="radio" id="answer" name="answer" value="2"> Madrid<br>
+        <input type="radio" id="answer" name="answer" value="3"> Paris<br>
+        <input type="radio" id="answer" name="answer" value="4"> Rome<br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

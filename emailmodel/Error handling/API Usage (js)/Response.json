@@ -1,0 +1,17 @@
+[
+    {
+        "questionText": "What is the capital of France?",
+        "options": ["1. Berlin", "2. Madrid", "3. Paris", "4. Rome"],
+        "correctOption": 3
+    },
+    {
+        "questionText": "Which programming language is platform-independent?",
+        "options": ["1. Python", "2. Java", "3. C++", "4. JavaScript"],
+        "correctOption": 2
+    },
+    {
+        "questionText": "What is 5 + 3?",
+        "options": ["1. 5", "2. 8", "3. 10", "4. 15"],
+        "correctOption": 2
+    }
+]

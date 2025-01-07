@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Component Scan for Spring Beans -->
+    <context:component-scan base-package="com.example.quiz" />
+
+    <!-- DataSource Configuration (if using a database) -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/quiz_app" />
+        <property name="username" value="root" />
+        <property name="password" value="password" />
+    </bean>
+
+    <!-- DAO Layer Bean -->
+    <bean id="questionRepository" class="com.example.quiz.repository.QuestionRepository" />
+
+    <!-- Service Layer Bean -->
+    <bean id="quizService" class="com.example.quiz.service.QuizService">
+        <constructor-arg ref="questionRepository" />
+    </bean>
+
+    <!-- Controller Layer Bean -->
+    <bean id="quizController" class="com.example.quiz.controller.QuizController">
+        <constructor-arg ref="quizService" />
+    </bean>
+
+</beans>

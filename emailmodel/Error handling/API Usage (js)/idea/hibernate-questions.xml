@@ -1,0 +1,18 @@
+"<!--"Alternatively, define schema in an XML-based format using Hibernate ORM"-->
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.example.quiz.model.Question" table="questions">
+        <id name="id" column="id">
+            <generator class="native" />
+        </id>
+        <property name="questionText" column="question_text" />
+        <property name="option1" column="option1" />
+        <property name="option2" column="option2" />
+        <property name="option3" column="option3" />
+        <property name="option4" column="option4" />
+        <property name="correctOption" column="correct_option" />
+    </class>
+</hibernate-mapping>

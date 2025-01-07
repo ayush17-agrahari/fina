@@ -1,0 +1,130 @@
+import java.util.Scanner;
+
+public class OnlineQuizApp {
+
+    private static int score = 0;
+    private static final String[] questions = {
+        "What is the capital of France?",
+        "Which language is used for Android development?"
+    };
+    private static final String[][] options = {
+        {"1. Berlin", "2. Madrid", "3. Paris", "4. Rome"},
+        {"1. Java", "2. C++", "3. Python", "4. Ruby"}
+    };
+    private static final int[] correctAnswers = {3, 1}; // Correct answer indices (1-based)
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Start the quiz
+        System.out.println("Welcome to the Online Quiz!");
+
+        for (int i = 0; i < questions.length; i++) {
+            System.out.println("\nQuestion " + (i + 1) + ": " + questions[i]);
+            for (String option : options[i]) {
+                System.out.println(option);
+            }
+            System.out.print("Enter your answer (1-4): ");
+            int userAnswer = getUserAnswer(scanner);
+            if (userAnswer == correctAnswers[i]) {
+                System.out.println("Correct!");
+                score++;
+            } else {
+                System.out.println("Wrong! The correct answer was: " + correctAnswers[i]);
+            }
+        }
+
+        // End of quiz
+        System.out.println("\nQuiz Finished!");
+        System.out.println("Your total score: " + score + " / " + questions.length);
+
+        // Collect feedback
+        Feedback feedback = collectFeedback(scanner);
+
+        // Display the feedback
+        feedback.displayFeedback();
+    }
+
+    private static int getUserAnswer(Scanner scanner) {
+        int userAnswer = -1;
+        while (true) {
+            if (scanner.hasNextInt()) {
+                userAnswer = scanner.nextInt();
+                if (userAnswer >= 1 && userAnswer <= 4) {
+                    break;
+                } else {
+                    System.out.println("Please enter a valid option (1-4).");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.next(); // Clear invalid input
+            }
+        }
+        return userAnswer;
+    }
+
+    private static Feedback collectFeedback(Scanner scanner) {
+        System.out.println("\nPlease provide your feedback:");
+
+        // Collect rating
+        System.out.print("Rate the quiz (1-5): ");
+        int rating = getFeedbackRating(scanner);
+        
+        // Collect comments
+        System.out.print("Enter your comments: ");
+        scanner.nextLine(); // Consume the newline left by nextInt()
+        String comments = scanner.nextLine();
+
+        // Create and return Feedback object
+        return new Feedback(rating, comments);
+    }
+
+    private static int getFeedbackRating(Scanner scanner) {
+        int rating = -1;
+        while (true) {
+            if (scanner.hasNextInt()) {
+                rating = scanner.nextInt();
+                if (rating >= 1 && rating <= 5) {
+                    break;
+                } else {
+                    System.out.println("Please rate between 1 and 5.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number between 1 and 5.");
+                scanner.next(); // Clear invalid input
+            }
+        }
+        return rating;
+    }
+}
+
+// Feedback Class to Handle Feedback Submission
+class Feedback {
+    private int rating;
+    private String comments;
+
+    // Constructor to initialize feedback data
+    public Feedback(int rating, String comments) {
+        this.rating = rating;
+        this.comments = comments;
+    }
+
+    // Getter methods
+    public int getRating() {
+        return rating;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    // Method to display feedback
+    public void displayFeedback() {
+        System.out.println("\nThank you for your feedback!");
+        System.out.println("Rating: " + rating);
+        System.out.println("Comments: " + comments);
+    }
+}
+
+
+//After the quiz, the user is prompted to rate the quiz on a scale of 1-5 and provide additional comments.
